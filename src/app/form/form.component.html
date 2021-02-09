@@ -1,0 +1,92 @@
+<div class="container">
+<div class="card m-3">
+    <h3 class="card-header">Registration Form</h3>
+   <div class="card-body">
+           <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+               <div class="form-group">
+                   <label class="font-weight-bold">Name</label>
+                   <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                   <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                       <div *ngIf="f.name.errors.required"> Name is required</div>
+                   </div>
+               </div>
+               <div class="form-group">
+                   <label class="font-weight-bold"> UserName</label>
+                   <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                   <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                       <div *ngIf="f.username.errors.required">UserName is required</div>
+                   </div>
+               </div>
+               
+               <div class="form-group">
+                   <label class="font-weight-bold">Password</label>
+                   <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                   <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                       <div *ngIf="f.password.errors.required">Password is required</div>
+                       <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                   </div>
+               </div>
+               <div class="form-group">
+                 <label class="font-weight-bold">Date of Birth</label>
+                 <input type="date" formControlName="date" class="form-control">
+               </div>
+               <div class="form-group">
+                 <label class="font-weight-bold">Gender</label>
+                 <div>
+                    <input id="Male" type="radio" value="Male" name="gender" formControlName="gender">
+                    <label for="Male">Male</label>
+                 </div>
+                 <div>
+                    <input id="Female" type="radio" value="Female" name="gender" formControlName="gender">
+                    <label for="Female">Female</label>
+                 </div>
+               </div>
+ 
+                <!-- <div class="form-group ">
+                 <label class="font-weight-bold">Languages Known</label>
+                 <div *ngFor="let data of languageList; let i=index">
+                    <label>
+                      <input type="checkbox" formControlName="languages" [value]="data" (change)="onCheckboxChange($event)" />
+                      {{data}}
+                    </label>
+                  </div>
+                 
+               </div> -->
+
+              
+
+ 
+               <div class="form-group">
+                 <label class="font-weight-bold">Technologies Known</label>
+                 <ng-select formControlName="skills" [items]="categories"
+                   bindLabel="name"
+                   placeholder="Select Technologies"
+                   appendTo="body"
+                   [multiple]="true"
+                   [(ngModel)]="selected">
+                 </ng-select>
+               </div>
+ 
+               
+                <div class="form-group">
+                    <label class="font-weight-bold">Home Address</label>&nbsp;
+                    <textarea rows="4" cols="50" formControlName="homeAddress" placeholder="Enter your home address" ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="font-weight-bold">Office Address</label>&nbsp;
+                    <textarea rows="4" cols="50" formControlName="officeAddress" placeholder="Enter your office address"></textarea>
+                </div>
+                  
+               <div class="form-group">
+                 <label class="font-weight-bold">Description</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 <textarea rows="2" cols="50" formControlName="description"  ></textarea>
+               </div>
+               <div class="form-group">
+                   <button class="btn btn-primary">Register</button>
+               </div>
+           </form>
+   </div>
+</div>
+</div>
+
